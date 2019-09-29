@@ -46,11 +46,11 @@ public class MultiPlayerTest {
     public void changementJoueur() throws Exception{
      
      assertEquals(joueur[0],jeu.donneJoueur());
-     jeu.lancer(10);
+     jeu.lancer(3);
+     jeu.lancer(4);
      assertEquals(joueur[1],jeu.donneJoueur());
-     jeu.lancer(10);
-     assertEquals(joueur[0],jeu.donneJoueur());
      }
+ 
     
     @Test
     public void Score() throws Exception{
@@ -69,6 +69,7 @@ public class MultiPlayerTest {
             Logger.getLogger(MultiPlayerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }
     
    
