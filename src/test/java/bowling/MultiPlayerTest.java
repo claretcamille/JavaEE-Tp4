@@ -54,11 +54,12 @@ public class MultiPlayerTest {
     
     @Test
     public void Score() throws Exception{
-        for(int i = 0;i<24;i++){
-            jeu.lancer(10);
-        }
-        assertEquals(jeu.scoreFor(joueur[1]),300);
-        assertEquals(jeu.scoreFor(joueur[0]),300);
+        
+        assertEquals(jeu.scoreFor(joueur[0]),0);
+        assertEquals(jeu.scoreFor(joueur[1]),0);
+        jeu.lancer(3);
+        assertEquals(jeu.scoreFor(joueur[0]),3);
+
     }
     
     @Test

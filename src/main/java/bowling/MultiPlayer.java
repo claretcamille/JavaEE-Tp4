@@ -52,7 +52,7 @@ public class MultiPlayer implements MultiPlayerGame {
     @Override
     public String lancer(int nombreDeQuillesAbattues) throws Exception {
         // Cas ou le jeux est fini:
-       if(this.jeu.isEmpty()){
+       if(this.mancheJ[this.mancheJ.length-1] == 11){
            throw new Exception("Le jeu est fini.");
        } else {
            // Lancer des quilles
@@ -60,11 +60,13 @@ public class MultiPlayer implements MultiPlayerGame {
            this.mancheJ[this.numJ] = this.actuJeu.getCurrentFrame().frameNumber;
            // Regarde si la manche est fini pour le joueur
            if(this.mancheJ[this.numJ] != this.mancheJ[this.mancheJ.length-1]){ 
-               
-               // On remet la manche fini dans la fille pour acceder a la suivante
-               this.jeu.push(actuJeu);
-               this.joueur.push(actuJoueur);
-               
+               // Actualisation de la manche dans laquelle se trouve le joueur
+               this.mancheJ[this.numJ] ++; 
+                
+                // On remet la manche fini dans la fille pour acceder a la suivante
+                this.jeu.push(actuJeu);
+                this.joueur.push(actuJoueur);
+              
                // On change le joueur
                this.actuJeu = this.jeu.firstElement();
                this.actuJoueur =  this.joueur.firstElement();
@@ -81,8 +83,13 @@ public class MultiPlayer implements MultiPlayerGame {
         
         // Joueur qui n'est pas dans la partie :
         if(this.joueur.contains(playerName) || this.actuJoueur == playerName){
-            int index = this.joueur.indexOf(playerName);
-            return this.jeu.elementAt(index).score();
+             System.out.println(this.joueur.contains(playerName)==false);
+            try{
+                return this.actuJeu.score();
+            } catch(Exception ex) {
+                int index = this.joueur.indexOf(playerName);
+                return this.jeu.elementAt(index).score();
+            }
         } else {
             // Joueur qui n'est pas dans la partie :
             throw new Exception("Ce joueur n'est pas de la partie");
